@@ -8,6 +8,7 @@ void deleteTodo(todo_t **head, int id)
 {
 	todo_t *current = *head;
 	todo_t *previous = NULL;
+
 	while (current != NULL)
 	{
 		if (current->id == id)

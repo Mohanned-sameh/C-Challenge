@@ -9,20 +9,20 @@
 todo_t *addTodo(todo_t **head, char *title, char *description)
 {
 	todo_t *newTodo = malloc(sizeof(todo_t));
+	todo_t *current;
+
 	if (newTodo == NULL)
 	{
 		printf("Error: malloc failed\n");
-		return NULL;
+		return (NULL);
 	}
-
-	newTodo->id = (*head) ? (*head)->id + 1 : 1;
-
+	newTodo->id = countTodo(*head) + 1;
 	newTodo->title = malloc(strlen(title) + 1);
 	if (newTodo->title == NULL)
 	{
 		printf("Error: malloc failed\n");
 		free(newTodo);
-		return NULL;
+		return (NULL);
 	}
 	strcpy(newTodo->title, title);
 
@@ -32,22 +32,18 @@ todo_t *addTodo(todo_t **head, char *title, char *description)
 		printf("Error: malloc failed\n");
 		free(newTodo->title);
 		free(newTodo);
-		return NULL;
+		return (NULL);
 	}
 	strcpy(newTodo->description, description);
-
 	newTodo->next = NULL;
-
 	if (*head == NULL)
 	{
 		*head = newTodo;
-		return newTodo;
+		return (newTodo);
 	}
-
-	todo_t *current = *head;
+	current = *head;
 	while (current->next != NULL)
 		current = current->next;
-
 	current->next = newTodo;
-	return newTodo;
+	return (newTodo);
 }

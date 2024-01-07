@@ -18,17 +18,13 @@ int main(void)
 		printf("4. Exit\n");
 		printf("Enter your choice: ");
 		scanf("%d", &choice);
-
 		switch (choice)
 		{
 		case 1:
 			printf("Enter title: ");
-			getchar();
-			fgets(title, sizeof(title), stdin);
-			title[strcspn(title, "\n")] = '\0';
+			getUserInput(title, sizeof(title));
 			printf("Enter description: ");
-			fgets(description, sizeof(description), stdin);
-			description[strcspn(description, "\n")] = '\0';
+			getUserInput(description, sizeof(description));
 			addTodo(&head, title, description);
 			break;
 		case 2:
@@ -48,5 +44,5 @@ int main(void)
 	} while (choice != 4);
 
 	freeTodo(head);
-	return 0;
+	return (0);
 }
